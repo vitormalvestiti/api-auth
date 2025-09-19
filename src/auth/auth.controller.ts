@@ -5,19 +5,21 @@ import { AuthService } from './auth.service';
 @Controller('auth')
 export class AuthController {
 
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService) { }
 
     @Post('signup')
-    async signup(@Body() body: SignUpDTO) { 
+    async signup(@Body() body: SignUpDTO) {
         console.log(body);
+
+        await this.authService.signup(body);
 
         return body;
     }
 
     @Post('signin')
-    async signin(@Body() body: SignInDTO) { 
+    async signin(@Body() body: SignInDTO) {
         console.log(body);
-
+        await this.authService.signin(body);
         return body;
     }
 
